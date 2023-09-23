@@ -32,8 +32,9 @@ jobs:
 
       - name: Push Docker image
         run: |
-          echo ${{ secrets.DOCKERHUB_PASSWORD }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
-          docker push alexeytozik/my-django-app
+            docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_PASSWORD }}
+            docker push alexeytozik/my-django-app
+      
 
   deploy-staging:
     needs: build
