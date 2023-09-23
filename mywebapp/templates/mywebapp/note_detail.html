@@ -2,11 +2,20 @@
 <html>
 <head>
     <title>Note Detail</title>
+    {% load bootstrap4 %}
+    <!-- Подключите стили Bootstrap 4 -->
+    {% bootstrap_css %}
 </head>
 <body>
-    <h1>{{ note.title }}</h1>
-    <p>{{ note.content }}</p>
-    <a href="{% url 'note_list' %}">Back to Note List</a>
-    <a href="{% url 'note_edit' note.pk %}">Edit Note</a>
+    <div class="container mt-5">
+        <h1>Note Detail</h1>
+        <p><strong>Title:</strong> {{ note.title }}</p>
+        <p><strong>Content:</strong> {{ note.content }}</p>
+        <a href="{% url 'note_list' %}" class="btn btn-primary">Back to List</a>
+        <!-- Добавьте кнопку Edit -->
+        <a href="{% url 'note_edit' note.pk %}" class="btn btn-info">Edit</a>
+    </div>
+    <!-- Подключите скрипты Bootstrap 4 -->
+    {% bootstrap_javascript %}
 </body>
 </html>

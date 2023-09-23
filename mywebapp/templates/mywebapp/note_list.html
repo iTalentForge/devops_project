@@ -5,6 +5,11 @@
     {% load bootstrap4 %}
 </head>
 <body>
+    <!-- Навигационная панель Bootstrap -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">My Notes</a>
+    </nav>
+
     <div class="container">
         <h1 class="mt-5">Note List</h1>
         <ul class="list-group mt-3">
@@ -18,5 +23,10 @@
         </ul>
         <a href="{% url 'note_create' %}" class="btn btn-primary mt-3">Create New Note</a>
     </div>
+    <!-- Подключите скрипты Bootstrap 4 (не обязательно для стилей, но полезно для функциональности) -->
+    {% bootstrap_javascript %}
+    <!-- Подключите стили Bootstrap 4 -->
+    {% bootstrap_css %}
 </body>
+</html>
 </html>
