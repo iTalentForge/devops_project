@@ -43,8 +43,9 @@ jobs:
     steps:
       - name: Deploy to Staging
         run: |
-          docker pull alexeytozik/my-django-app:latest
-          docker run -d -p 8000:8000 my-django-app
+            docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_PASSWORD }}
+            docker pull alexeytozik/my-django-app:latest
+            docker run -d -p 8000:8000 my-django-app
 
   deploy-production:
     needs: build
@@ -53,5 +54,6 @@ jobs:
     steps:
       - name: Deploy to Production
         run: |
-          docker pull alexeytozik/my-django-app:latest
-          docker run -d -p 8000:8000 my-django-app
+            docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_PASSWORD }}
+            docker pull alexeytozik/my-django-app:latest
+            docker run -d -p 8000:8000 my-django-app
