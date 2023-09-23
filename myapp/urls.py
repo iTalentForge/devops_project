@@ -1,9 +1,10 @@
-from django.contrib import admin
 from django.urls import path
-from mywebapp import views
+from . import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('hello/', views.hello, name='hello'),
+    path('', views.note_list, name='note_list'),
+    path('note/<int:pk>/', views.note_detail, name='note_detail'),
+    path('note/new/', views.note_create, name='note_create'),
+    path('note/<int:pk>/edit/', views.note_edit, name='note_edit'),
 ]
 
