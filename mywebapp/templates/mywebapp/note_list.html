@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Note List</title>
+    {% load bootstrap4 %}
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5">Note List</h1>
+        <ul class="list-group mt-3">
+            {% for note in notes %}
+                <li class="list-group-item">
+                    <a href="{% url 'note_detail' note.pk %}">{{ note.title }}</a>
+                </li>
+            {% empty %}
+                <li class="list-group-item">No notes yet.</li>
+            {% endfor %}
+        </ul>
+        <a href="{% url 'note_create' %}" class="btn btn-primary mt-3">Create New Note</a>
+    </div>
+</body>
+</html>
