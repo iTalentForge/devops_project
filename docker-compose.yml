@@ -1,0 +1,38 @@
+version: '3'
+services:
+  mysql:
+      image: mysql:8.0.30
+      environment:
+        MYSQL_DATABASE: devops-monitoring
+        MYSQL_USER: admin
+        MYSQL_PASSWORD: admin
+        MYSQL_ROOT_PASSWORD: root
+      ports:
+        - "3307:3306"
+      networks:
+        - myappnet
+
+  zabbix_web:
+    image: zabbix/zabbix-web-nginx-mysql
+    environment:
+      - DB_SERVER_HOST=mysql
+      - MYSQL_USER=admin
+      - MYSQL_PASSWORD=admin
+      - MYSQL_ROOT_PASSWORD=root
+      - ZBX_SERVER_HOST=zabbix-server
+    ports:
+      - "8081:80"
+    networks:
+      - myappnet
+      
+  myapp:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    networks:
+      - myappnet
+
+networks:
+  myappnet:
